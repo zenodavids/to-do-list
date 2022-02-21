@@ -1,0 +1,33 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+<!-- we use a forEach method to list our each of the items in the array, without repeating any -->
+  <% newListItems.forEach((item) => { %>
+
+    <form action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()">
+        <!-- the value attributes targets to delete using the items id
+        the onchange attribute acts as a button that was the input is checked, it deletes -->
+
+        <p><%= item.name %></p>
+        <!-- this above codes lists out only the names -->
+      </div>
+      <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+      <!-- this effects the delete for the the other routes -->
+    </form>
+
+      <% }) %>
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>"">+</button>
+        <!-- the value attribute in this button tag helps in that when we insert a new item in the other lists, it will redirect them to the other lists, not the home route. -->
+      </form>
+  </div>
+
+<%- include("footer") -%>
