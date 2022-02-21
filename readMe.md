@@ -133,8 +133,73 @@ connecting our app to the mongo atlas server
 -- we access mongodb.com, try it for free if we are testing or the paid version
 -- we connect, create users and clusters, useclusters to connect to the app and copy thecode from the database then run it/
 
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+// deploying to heroku
+
+//for already existing heroku accounts
+
+1. Track your codebase in a Git repository
+- in your project folder in the cli,
+-- git init //this initialises an empty git repository
+-- git add . // this adds everything in our repository yo the staging area
+-- git commit -m "Initial commit" // this commits our app and we pass in amessage along side to notify that it is an initial commit
+-- heroku login -i // this will log you into heroku through your cli and will ask you for your email and password.
 
 
+2. Add a Heroku Git remote
+- still in your cli
+-- heroku create // this will createa new app on heroku and even gives us a link
+
+
+3. Add a Procfile
+- still i the same root directory via the cli;
+-- touch Procfile // this creates a new file called profile
+- and we paste 'web node app.js' in the file
+
+
+4. Listen on the correct port
+-- replace your app.listen code with:
+
+let port = process.env.PORT
+if (port == null || port == '') {
+  port = 3000
+}
+app.listen(port, () => console.log('server started successfully'))
+
+
+5. Use a database or object storage instead of writing to your local filesystem
+- thiis has to do with our app with a database like mongodb
+
+
+6. Complete language-specific setup
+- go to the package.jsonfile in your node app and paste the below code just under the " license " object pair
+
+  "engines": {
+    "node": "14.17.5"
+  },
+
+-- what this does is it inputs the version of the programming language and its version your app will run on.
+- in your cli // node --version // to get your current node version.
+
+
+
+7. Deploy your app
+- in your cli,
+-- touch .gitignore //create a .gitignore file, open it and paste the below there;
+
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
+
+- then we resaved the slresdy edited app back on git
+-- git add . //
+-- git commit -m " Add gitignore procfile and update ports" //
+-- git push heroku master //
+
+
+8. Explore the Heroku platform
 
 
 
