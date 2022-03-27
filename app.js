@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 mongoose.connect(
-  'mongodb+srv://admin-zeno:&0ngsept$@cluster0.0somk.mongodb.net/todolistDB',
+  'mongodb+srv://admin-username:password@cluster0.0somk.mongodb.net/todolistDB',
   { useNewUrlParser: true }
 )
 // 2c. connect mongoose to mongodb and create a new database 'todolistDB'
